@@ -1,0 +1,18 @@
+@import 'shared';
+
+.Footer {
+  background-color: $black;
+  color: $white;
+  width: 100%;
+  padding: px(50) 0;
+
+  ul {
+    li {
+      margin-top: px(15);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
