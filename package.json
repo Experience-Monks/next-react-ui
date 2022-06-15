@@ -35,7 +35,8 @@
     "adviser-ci": "adviser --tags ci --verbose --quiet",
     "sass-lint": "stylelint \"./src/**/*.scss\"",
     "ls-lint": "node_modules/.bin/ls-lint",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "postinstall": "node ./src/scripts/copy-components-utility.js"
   },
   "browserslist": [
     ">0.2%",
@@ -48,8 +49,11 @@
     "@jam3/react-hooks": "1.0.0",
     "@reduxjs/toolkit": "^1.6.0",
     "classnames": "2.3.1",
+    "cosmiconfig": "^7.0.1",
     "default-passive-events": "2.0.0",
+    "dir-compare": "^4.0.0",
     "focus-visible": "5.2.0",
+    "fs-extra": "^10.1.0",
     "get-scroll": "2.0.1",
     "gsap": "3.9.0",
     "js-cookie": "^3.0.0",
