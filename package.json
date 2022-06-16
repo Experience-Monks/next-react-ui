@@ -1,13 +1,13 @@
 {
-  "name": "jam3-dev",
-  "version": "2.4.1",
-  "private": true,
+  "name": "next-react-ui",
+  "version": "1.0.0",
+  "private": false,
   "bugs": {
-    "url": "https://github.com/Jam3/nextjs-boilerplate/issues"
+    "url": "https://github.com/Jam3/next-react-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jam3/nextjs-boilerplate.git"
+    "url": "git+https://github.com/Jam3/next-react-ui.git"
   },
   "license": "MIT",
   "scripts": {
