@@ -1,0 +1,23 @@
+@import 'shared';
+
+$color: black;
+$active-color: blue;
+
+.Breadcrumbs {
+  background-color: white;
+  font-size: 2rem;
+
+  > .link {
+    color: $color;
+    text-decoration: none;
+
+    &.active {
+      color: $active-color;
+      text-decoration: underline;
+    }
+  }
+
+  > .separator {
+    padding: 0 0.3em;
+  }
+}
