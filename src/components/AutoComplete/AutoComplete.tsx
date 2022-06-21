@@ -7,7 +7,7 @@ import styles from './AutoComplete.module.scss';
 export type Props = {
   className?: string;
   id: string;
-  data: [string];
+  data: string[];
   autoCompleteResult: Function;
 };
 
