@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import styles from './BaseButton.module.scss';
 
-export type BaseProps = {
+type BaseProps = {
   className?: string | null;
   children?: ReactNode;
   tabIndex?: number | string;
@@ -34,8 +34,8 @@ type FComponent =
       }
     >;
 
-type Props = BaseProps & {
-  component: FComponent;
+export type Props = BaseProps & {
+  component?: FComponent;
 };
 
 const BaseButton = (
