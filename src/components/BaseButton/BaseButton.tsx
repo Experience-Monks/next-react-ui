@@ -1,13 +1,4 @@
-import React, {
-  ForwardedRef,
-  forwardRef,
-  KeyboardEvent,
-  memo,
-  MouseEvent,
-  ReactNode,
-  TouchEvent,
-  useMemo
-} from 'react';
+import React, { ForwardedRef, forwardRef, memo, ReactNode, useMemo } from 'react';
 import classnames from 'classnames';
 
 import styles from './BaseButton.module.scss';
@@ -19,7 +10,7 @@ export type BaseProps = {
   disabled?: boolean;
   'aria-label'?: string;
   title?: string;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  onClick?: Function;
   onBlur?: Function;
   onFocus?: Function;
   onKeyDown?: Function;
