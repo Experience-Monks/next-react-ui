@@ -1,0 +1,29 @@
+@import 'shared';
+
+.Tabs {
+  width: 100%;
+
+  > .tabsList {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+
+    > .tab {
+      list-style: none;
+      padding: 0.5rem;
+      font-size: 2rem;
+      text-transform: capitalize;
+      /* stylelint-disable */
+      border-bottom: 1px solid transparent;
+      transition: border 0.125s ease-out;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.active {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+}
