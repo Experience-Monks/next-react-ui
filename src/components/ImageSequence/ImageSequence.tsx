@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import styles from './ImageSequence.module.scss';
 
 import BaseButton from '../BaseButton/BaseButton';
-import { clamp, getViewportHeight, imageCoverDimensions, isImageLoaded } from './Utils';
+import { clamp, getViewportHeight, imageCoverDimensions, isImageLoaded } from './utils';
 
 const IMAGE_LOAD_GAP = 4;
 
