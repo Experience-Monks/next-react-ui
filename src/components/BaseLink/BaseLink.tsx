@@ -49,38 +49,29 @@ const BaseLink = (
 
   const componentProps = useMemo(
     () =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      Object.keys(props).reduce((acc, key) => ([...excludes].indexOf(key) > -1 ? acc : { ...acc, [key]: props[key] }), {
-        className: classnames(styles.BaseLink, className)
-      }),
+      Object.keys(props).reduce(
+        (acc, key) => ([...excludes].indexOf(key) > -1 ? acc : { ...acc, [key]: props[key as keyof typeof props] }),
+        {
+          className: classnames(styles.BaseLink, className)
+        }
+      ) as Props,
     [className, props]
   );
 
   return useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     componentProps['aria-label'] = props['aria-label'] || props.title;
 
     if (Component === 'a') {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       componentProps.href = href;
 
       if (isDownload) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         componentProps.download = download;
       }
 
       // set external link attributes
       if (externalSiteRegex.test(href) && !isDownload) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         componentProps.target = target;
         if (target === Target.BLANK) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           componentProps.rel = rel || 'noreferrer noopener';
         }
       }
@@ -97,6 +88,8 @@ const BaseLink = (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <Component ref={ref} href={href}>
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
           <a {...componentProps}>{children}</a>
         </Component>
       );
