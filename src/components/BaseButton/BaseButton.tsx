@@ -1,17 +1,25 @@
-import { ForwardedRef, forwardRef, memo, ReactNode, useMemo } from 'react';
+import React, {
+  ForwardedRef,
+  forwardRef,
+  KeyboardEvent,
+  memo,
+  MouseEvent,
+  ReactNode,
+  TouchEvent,
+  useMemo
+} from 'react';
 import classnames from 'classnames';
 
 import styles from './BaseButton.module.scss';
 
-export type Props = {
-  className?: string;
-  component?: string | Function;
+export type BaseProps = {
+  className?: string | null;
   children?: ReactNode;
   tabIndex?: number | string;
   disabled?: boolean;
   'aria-label'?: string;
   title?: string;
-  onClick?: Function;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
   onBlur?: Function;
   onFocus?: Function;
   onKeyDown?: Function;
@@ -26,14 +34,26 @@ export type Props = {
   onTouchStart?: Function;
 };
 
+type FComponent =
+  | string
+  | React.FunctionComponent<
+      BaseProps & {
+        ref: React.Ref<HTMLElement> | null;
+        role: string | null;
+      }
+    >;
+
+type Props = BaseProps & {
+  component: FComponent;
+};
+
 const BaseButton = (
-  { className, component: Component = 'button', children, ...buttonProps }: Props,
-  ref: ForwardedRef<HTMLElement>
+  { className = null, component: Component = 'button', children = null, ...buttonProps }: Props,
+  ref: ForwardedRef<HTMLElement | HTMLButtonElement>
 ) => {
   const currRole = useMemo(() => (Component === 'button' ? null : 'button'), [Component]);
+
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     <Component className={classnames(styles.BaseButton, className)} ref={ref} role={currRole} {...buttonProps}>
       {children}
     </Component>
