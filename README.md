@@ -4,6 +4,7 @@
 [![Codeship Status for Jam3/nyg-nextjs](https://app.codeship.com/projects/0fcd63a0-29d6-0138-cc17-02df0a7848fa/status?branch=master)](https://app.codeship.com/projects/384142)
 
 > Reusable and customizable React component library based on the NextJS Generator
+> Spiritual successor to https://github.com/Jam3/react-ui
 
 ---
 
