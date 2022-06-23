@@ -4,6 +4,8 @@ import noop from 'no-op';
 
 import styles from './CookieBanner.module.scss';
 
+import BaseButton from '@/components/BaseButton/BaseButton';
+
 const copy = {
   settings: 'Cookie Settings',
   close: 'close',
@@ -88,30 +90,30 @@ function CookieBanner({
       <p className={styles.description}>{children || defaultText}</p>
 
       <div className={styles.buttonContainer}>
-        <button onClick={handleAcceptAllCookies}>{acceptCta}</button>
-        <button onClick={handleDeclineAllCookies}>{rejectCta}</button>
-        <button onClick={handleCookieSettingsClick}>{copy.settings}</button>
+        <BaseButton onClick={handleAcceptAllCookies}>{acceptCta}</BaseButton>
+        <BaseButton onClick={handleDeclineAllCookies}>{rejectCta}</BaseButton>
+        <BaseButton onClick={handleCookieSettingsClick}>{copy.settings}</BaseButton>
       </div>
 
       {showCookieSetting && (
         <div className={styles.cookieSettings}>
-          <button className={styles.cookieSettingsClose} onClick={handleCookieSettingsClose}>
+          <BaseButton className={styles.cookieSettingsClose} onClick={handleCookieSettingsClose}>
             {copy.close}
-          </button>
+          </BaseButton>
 
           <div className={styles.cookieSettingsContent}>
             <p className={styles.cookieSettingsDescription}>{copy.description}</p>
 
             <ul>
               <li>
-                <input type="checkbox" id="cookie-necessary" checked={cookieSettings.necessary} readOnly />
+                <input type="checkbox" id="cookie-necessary" checked={cookieSettings?.necessary} readOnly />
                 <label htmlFor="cookie-necessary">{copy.purpose.necessary}</label>
               </li>
               <li>
                 <input
                   type="checkbox"
                   id="cookie-preference"
-                  checked={cookieSettings.preference}
+                  checked={cookieSettings?.preference}
                   onChange={(e) => handleCookieUpdate('preference', e.target.checked)}
                 />
                 <label htmlFor="cookie-preference">{copy.purpose.preference}</label>
@@ -120,7 +122,7 @@ function CookieBanner({
                 <input
                   type="checkbox"
                   id="cookie-statistics"
-                  checked={cookieSettings.statistics}
+                  checked={cookieSettings?.statistics}
                   onChange={(e) => handleCookieUpdate('statistics', e.target.checked)}
                 />
                 <label htmlFor="cookie-statistics">{copy.purpose.statistics}</label>
