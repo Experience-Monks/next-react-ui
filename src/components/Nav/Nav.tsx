@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import classnames from 'classnames';
 
 import styles from './Nav.module.scss';
 
+import BaseLink, { Target } from '@/components/BaseLink/BaseLink';
 import Image from '@/components/Image/Image';
 
 import SvgThreeLogo from '@/components/svgs/three-logo.svg';
@@ -21,14 +21,14 @@ function Nav() {
     <nav className={classnames(styles.Nav)}>
       <div className={styles.wrapper}>
         <ul className={styles.routes}>
-          <a tabIndex={0} aria-label="Skip to content" className={styles.skipToContent} href="#start-of-content">
-            Skip to content
-          </a>
+          <BaseLink tabIndex={0} aria-label="Skip to content" className={styles.skipToContent} href="#start-of-content">
+            {'Skip to content'}
+          </BaseLink>
           {Object.values(routes).map(({ path, title }) => (
             <li key={path}>
-              <Link href={path}>
-                <a aria-label="Home">{path === '/' ? <SvgThreeLogo className={styles.threeLogo} /> : title}</a>
-              </Link>
+              <BaseLink aria-label="Home" href={path}>
+                {path === '/' ? <SvgThreeLogo className={styles.threeLogo} /> : title}
+              </BaseLink>
             </li>
           ))}
         </ul>
@@ -36,9 +36,9 @@ function Nav() {
         <ul className={styles.links}>
           {LINKS.map(({ key, href, label, file }) => (
             <li key={key}>
-              <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+              <BaseLink href={href} target={Target.BLANK} rel="noopener noreferrer" aria-label={label}>
                 <Image src={file} alt={label} />
-              </a>
+              </BaseLink>
             </li>
           ))}
         </ul>
