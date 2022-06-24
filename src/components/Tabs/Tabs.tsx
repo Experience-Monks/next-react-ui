@@ -16,10 +16,10 @@ import noop from 'no-op';
 import styles from './Tabs.module.scss';
 
 enum Keys {
-  END = 35,
-  HOME = 36,
-  LEFT = 37,
-  RIGHT = 39
+  END = 'End',
+  HOME = 'Home',
+  LEFT = 'ArrowLeft',
+  RIGHT = 'ArrowRight'
 }
 
 export type Props = {
@@ -43,10 +43,10 @@ export const Tabs = ({ className, tabListLabel = '', children }: Props) => {
 
   function handleKeyup(e: KeyboardEvent) {
     e.preventDefault();
-    if (e.which === Keys.LEFT) previousTab();
-    else if (e.which === Keys.RIGHT) nextTab();
-    else if (e.which === Keys.END) setActive(childrenArray.length - 1);
-    else if (e.which === Keys.HOME) setActive(0);
+    if (e.key === Keys.LEFT) previousTab();
+    else if (e.key === Keys.RIGHT) nextTab();
+    else if (e.key === Keys.END) setActive(childrenArray.length - 1);
+    else if (e.key === Keys.HOME) setActive(0);
   }
 
   return (
