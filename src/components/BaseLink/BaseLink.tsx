@@ -6,8 +6,10 @@ import styles from './BaseLink.module.scss';
 
 const excludes = ['children', 'download', 'target', 'rel', 'link'];
 export enum Target {
-  SELF = 'self',
-  BLANK = '_blank'
+  SELF = '_self',
+  BLANK = '_blank',
+  PARENT = '_parent',
+  TOP = '_top'
 }
 
 const externalLinkRegex = /^(https:\/\/|http:\/\/|www\.|tel:|mailto:)/;
