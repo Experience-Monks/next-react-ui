@@ -1,3 +1,5 @@
+import BaseLink, { Target } from '@/components/BaseLink/BaseLink';
+
 import CookieBanner, { Props } from './CookieBanner';
 
 export default { title: 'components/CookieBanner' };
@@ -17,9 +19,9 @@ Default.parameters = {
 export const WithChildren = (args: Props) => (
   <CookieBanner {...args}>
     We use cookies on this website to improve your experience. Learn more on our{' '}
-    <a href="https://www.jam3.com/privacy" target="_blank'">
+    <BaseLink href="https://www.jam3.com/privacy" target={Target.BLANK}>
       Privacy Policy
-    </a>
+    </BaseLink>
     .
   </CookieBanner>
 );
