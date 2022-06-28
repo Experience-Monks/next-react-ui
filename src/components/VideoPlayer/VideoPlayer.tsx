@@ -206,19 +206,18 @@ const VideoPlayer = ({
       trackRef.current?.removeEventListener('cuechange', onTrackChange);
     }
 
-    const track = document.createElement('track');
-    track.kind = captions.kind;
-    track.label = captions.label;
-    track.srclang = captions.srclang;
-    track.default = captions.default;
-    track.src = captions.src;
-    // @ts-ignore
-    track.mode = 'hidden';
+    const trackElement = document.createElement('track');
+    trackElement.kind = captions.kind;
+    trackElement.label = captions.label;
+    trackElement.srclang = captions.srclang;
+    trackElement.default = captions.default;
+    trackElement.src = captions.src;
+    trackElement.track.mode = 'hidden';
 
-    trackRef.current = track;
-    video.appendChild(track);
+    trackRef.current = trackElement;
+    video.appendChild(trackElement);
     video.textTracks[0].mode = 'hidden';
-    track.style.display = 'none';
+    trackElement.style.display = 'none';
 
     trackRef.current.addEventListener('cuechange', onTrackChange);
   }
@@ -302,8 +301,8 @@ const VideoPlayer = ({
 
   function onKeyPress(e: React.KeyboardEvent) {
     if (allowKeyboardControl) {
-      const event = e.keyCode || e.which || e.charCode;
-      if (event === 32) {
+      const event = e.key;
+      if (event === 'Spacebar' || event === ' ') {
         togglePlay();
       }
     }
