@@ -22,7 +22,7 @@ function Nav() {
       <div className={styles.wrapper}>
         <ul className={styles.routes}>
           <BaseLink tabIndex={0} aria-label="Skip to content" className={styles.skipToContent} href="#start-of-content">
-            {'Skip to content'}
+            Skip to content
           </BaseLink>
           {Object.values(routes).map(({ path, title }) => (
             <li key={path}>
