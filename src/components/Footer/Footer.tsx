@@ -1,8 +1,9 @@
 import { memo } from 'react';
-import Link from 'next/link';
 import classnames from 'classnames';
 
 import styles from './Footer.module.scss';
+
+import BaseLink from '@/components/BaseLink/BaseLink';
 
 import routes from '@/data/routes';
 
@@ -12,9 +13,7 @@ function Footer() {
       <ul>
         {Object.values(routes).map(({ path, title }) => (
           <li key={path}>
-            <Link href={path}>
-              <a>{title}</a>
-            </Link>
+            <BaseLink href={path}>{title}</BaseLink>
           </li>
         ))}
       </ul>
