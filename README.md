@@ -45,10 +45,16 @@ The components in this library can be ejected for advanced customization while m
 After creating the configuration file, proceed to install this library in your project.
 
 ```
-npm i git+https://github.com/Jam3/next-react-ui.git
+npm i git+https://github.com/Jam3/next-react-ui.git --foreground-scripts
 ```
 
-Every time npm install runs in your project, it will analyze react-ui for any updates to the base component, if an update is detected, it will generate git merge markers with the new changes while preserving any ejected changes made in the project.
+When npm install runs in your project, it will analyze react-ui for any updates to the base component, if an update is detected, it will generate git merge markers with the new changes while preserving any ejected changes made in the project.
+
+To pull in new changes run:
+
+```
+npm ci --foreground-scripts
+```
 
 ---
 
@@ -57,6 +63,8 @@ Every time npm install runs in your project, it will analyze react-ui for any up
 ```
 npm run dev
 ```
+
+---
 
 ## Upgrading
 
@@ -99,6 +107,8 @@ Commit and create PR into main:
 git checkout -b boilerplate-upgrade-oct-26-2022
 git commit -m "feature: Update boilerplate"
 ```
+
+---
 
 ## Release
 

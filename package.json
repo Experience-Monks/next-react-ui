@@ -1,7 +1,7 @@
 {
-  "name": "jam3-dev",
-  "version": "7.0.0",
-  "private": true,
+  "name": "next-react-ui",
+  "version": "1.0.0",
+  "private": false,
   "bugs": {
     "url": "https://github.com/Jam3/nextjs-boilerplate/issues"
   },
@@ -36,7 +36,8 @@
     "adviser-ci": "adviser --tags ci --verbose --quiet",
     "sass-lint": "stylelint \"./src/**/*.scss\"",
     "ls-lint": "node_modules/.bin/ls-lint",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "postinstall": "node ./src/scripts/copy-components-utility.js"
   },
   "browserslist": [
     ">0.2%",
@@ -47,9 +48,13 @@
   "dependencies": {
     "@jam3/detect": "2.0.5",
     "@reduxjs/toolkit": "^1.8.2",
+    "chalk": "4.1.2",
     "classnames": "2.3.1",
+    "cosmiconfig": "^7.0.1",
     "default-passive-events": "2.0.0",
+    "dir-compare": "^4.0.0",
     "focus-visible": "5.2.0",
+    "fs-extra": "^10.1.0",
     "fullscreen-handler": "^0.0.2",
     "get-scroll": "2.0.1",
     "gsap": "3.10.4",
