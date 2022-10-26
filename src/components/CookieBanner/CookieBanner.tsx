@@ -1,10 +1,8 @@
-import { memo, PropsWithChildren, useCallback, useState } from 'react';
-import classnames from 'classnames';
+import { FC, memo, PropsWithChildren, useCallback, useState } from 'react';
+import classNames from 'classnames';
 import noop from 'no-op';
 
-import styles from './CookieBanner.module.scss';
-
-import BaseButton from '@/components/BaseButton/BaseButton';
+import css from './CookieBanner.module.scss';
 
 const copy = {
   settings: 'Cookie Settings',
@@ -36,7 +34,7 @@ type CookieConsentProps = {
   thirdParty: boolean;
 };
 
-export type Props = PropsWithChildren<{
+export type CookieBannerProps = PropsWithChildren<{
   className?: string;
   defaultText?: string;
   acceptCta?: string;
@@ -47,7 +45,7 @@ export type Props = PropsWithChildren<{
   onReject(): void;
 }>;
 
-function CookieBanner({
+const CookieBanner: FC<CookieBannerProps> = ({
   className,
   defaultText = copy.defaultText,
   acceptCta = copy.accept,
@@ -57,7 +55,7 @@ function CookieBanner({
   onAccept = noop,
   onReject = noop,
   children
-}: Props) {
+}) => {
   const [cookieSettings, setCookieSettings] = useState(cookieConsent);
   const [showCookieSetting, setShowCookieSettings] = useState(false);
 
@@ -86,34 +84,34 @@ function CookieBanner({
   );
 
   return (
-    <div className={classnames(styles.CookieBanner, className)}>
-      <p className={styles.description}>{children || defaultText}</p>
+    <div className={classNames('CookieBanner', css.root, className)}>
+      <p className={css.description}>{children || defaultText}</p>
 
-      <div className={styles.buttonContainer}>
-        <BaseButton onClick={handleAcceptAllCookies}>{acceptCta}</BaseButton>
-        <BaseButton onClick={handleDeclineAllCookies}>{rejectCta}</BaseButton>
-        <BaseButton onClick={handleCookieSettingsClick}>{copy.settings}</BaseButton>
+      <div className={css.buttonContainer}>
+        <button onClick={handleAcceptAllCookies}>{acceptCta}</button>
+        <button onClick={handleDeclineAllCookies}>{rejectCta}</button>
+        <button onClick={handleCookieSettingsClick}>{copy.settings}</button>
       </div>
 
       {showCookieSetting && (
-        <div className={styles.cookieSettings}>
-          <BaseButton className={styles.cookieSettingsClose} onClick={handleCookieSettingsClose}>
+        <div className={css.cookieSettings}>
+          <button className={css.cookieSettingsClose} onClick={handleCookieSettingsClose}>
             {copy.close}
-          </BaseButton>
+          </button>
 
-          <div className={styles.cookieSettingsContent}>
-            <p className={styles.cookieSettingsDescription}>{copy.description}</p>
+          <div className={css.cookieSettingsContent}>
+            <p className={css.cookieSettingsDescription}>{copy.description}</p>
 
             <ul>
               <li>
-                <input type="checkbox" id="cookie-necessary" checked={cookieSettings?.necessary ?? false} readOnly />
+                <input type="checkbox" id="cookie-necessary" checked={cookieSettings?.necessary} readOnly />
                 <label htmlFor="cookie-necessary">{copy.purpose.necessary}</label>
               </li>
               <li>
                 <input
                   type="checkbox"
                   id="cookie-preference"
-                  checked={cookieSettings?.preference ?? false}
+                  checked={cookieSettings?.preference}
                   onChange={(e) => handleCookieUpdate('preference', e.target.checked)}
                 />
                 <label htmlFor="cookie-preference">{copy.purpose.preference}</label>
@@ -122,7 +120,7 @@ function CookieBanner({
                 <input
                   type="checkbox"
                   id="cookie-statistics"
-                  checked={cookieSettings?.statistics ?? false}
+                  checked={cookieSettings?.statistics}
                   onChange={(e) => handleCookieUpdate('statistics', e.target.checked)}
                 />
                 <label htmlFor="cookie-statistics">{copy.purpose.statistics}</label>
@@ -131,7 +129,7 @@ function CookieBanner({
                 <input
                   type="checkbox"
                   id="cookie-marketing"
-                  checked={cookieSettings?.marketing ?? false}
+                  checked={cookieSettings?.marketing}
                   onChange={(e) => handleCookieUpdate('marketing', e.target.checked)}
                 />
                 <label htmlFor="cookie-marketing">{copy.purpose.marketing}</label>
@@ -142,6 +140,6 @@ function CookieBanner({
       )}
     </div>
   );
-}
+};
 
 export default memo(CookieBanner);

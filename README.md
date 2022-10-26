@@ -1,10 +1,18 @@
-# Jam3 Next React UI
+<p align="center">
+  <a href="https://terminalizer.com">
+    <img src="docs/logo.jpg"/>
+  </a>
+</p>
+
+# Jam3 NextJS Generator
 
 ![GitHub](https://img.shields.io/github/license/jam3/nyg-nextjs)
-[![Codeship Status for Jam3/nyg-nextjs](https://app.codeship.com/projects/0fcd63a0-29d6-0138-cc17-02df0a7848fa/status?branch=master)](https://app.codeship.com/projects/384142)
 
-> Reusable and customizable React component library based on the NextJS Generator
-> Spiritual successor to https://github.com/Jam3/react-ui
+> Boilerplate for React, Static and Server Side Rendered projects with NextJS
+
+> https://generator.jam3.net
+
+> Icon made by Pixel perfect from www.flaticon.com
 
 ---
 
@@ -13,6 +21,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Release](#release)
+- [Set up Git LFS](#setupgitlfs)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -20,35 +29,30 @@
 
 ## Installation
 
-The components in this library can be ejected for advanced customization while maintaining version control. This functionality is achieved by npm post install hook that runs `src/scripts/copy-component-utility.js` To use it, simply create a `.react-uirc.json` file in the root of your project with the following properties.
+### Check your Node and NPM versions.
 
-```
-{
-  "eject": true,
-  "eject-path": "./src/components",
-  "components": [
-    {
-      "name": "BaseButton",
-      "newName": "PillButton"
-    },
-    "AppAdmin"
-  ]
-}
+Make sure you are using Node 16.x.x and NPM 8.x.x on your development environment. Using NVM is highly encouraged.
+
+```properties
+$ nvm use 16
+$ npm install --global npm@8
 ```
 
-`eject`: Enables the ejection of components, if ommited the script will not be called.
+> TIP: If you use ZSH, you can configure automatic Node switching: https://kinduff.com/2016/09/14/automatic-version-switch-for-nvm/
 
-`eject-path`: Specifies a custom path for the components to be ejected to, if ommited defaults to src/components.
+### Clone the GitHub repository
 
-`components`: A list of components to eject into your project. Components can be defined as strings (simple mode) or as objects (advanced mode). In advanced mode you can specify a new ejected name to be used in your project.
+Or Fork it, and start working right away with it.
 
-After creating the configuration file, proceed to install this library in your project.
-
-```
-npm i git+https://github.com/Jam3/next-react-ui.git
+```properties
+$ git clone https://github.com/Jam3/nyg-nextjs.git
 ```
 
-Every time npm install runs in your project, it will analyze react-ui for any updates to the base component, if an update is detected, it will generate git merge markers with the new changes while preserving any ejected changes made in the project.
+### Set up CI/CD
+
+Deploying a static site is fairly simple, we are going to the set up for CircleCI.
+
+To find out more, go to [CircleCI Readme](https://github.com/Jam3/nextjs-boilerplate/blob/main/.circleci/CircleCI.md)
 
 ---
 
@@ -96,7 +100,27 @@ Default location can be edited here:
 
 To releasing new versions we are using [standard-version](https://github.com/conventional-changelog/standard-version).
 
-In addition, each component folder has a `.ReactUIMetaVersion` file. This file is responsible for independently controlling versions of each component. When making an update to a component, it is vital that this file is also updated.
+Steps:
+
+1. When PRs/commits land to your master branch, select the Squash and Merge option.
+2. Add a title and body that follows the [Conventional Commits Specification](https://www.conventionalcommits.org).
+3. Run `$ git checkout main; git pull origin main`
+4. Run `$ npm run release`
+5. Run `$ git push --follow-tags origin main`
+
+---
+
+## Set up Git LFS
+
+If you would like to track files with Git LFS follow the below steps. These steps assume docker is used to deploy, and might change based on your deployment infrastructure as it was tested in Jam3 infrastructures.
+
+1. Generate SSH key + save it in a encrypted env variable
+   You can use the [Codeship Pro guide](https://github.com/codeship-library/docker-utilities/tree/master/ssh-helper). The encrypted environment will be a different file name, like `.env.codeship.ssh.local`
+
+2. Upload public SSH key to GitHub
+
+3. Enable Git LFS ini the artifact.sh script, uncommenting the line `bash ./.codeship/set-lfs.sh`
+4. Enable ssh config `encrypted_env_file: .env.codeship.ssh.encrypted` in `codeship-services.yml`
 
 ---
 

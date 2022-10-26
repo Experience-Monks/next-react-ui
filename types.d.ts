@@ -12,8 +12,8 @@ declare module 'get-scroll' {
   export function getScrollTop(): number;
 }
 
-declare module '@jam3/react-hooks' {
-  export function useWindowSize(debounce: number): { innerWidth: number; innerHeight: number };
+declare module '@jam3/stats' {
+  export default function stats(): Stats;
 }
 
 declare module '*.svg' {
