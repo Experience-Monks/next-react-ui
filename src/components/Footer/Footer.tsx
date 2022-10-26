@@ -1,24 +1,29 @@
-import { memo } from 'react';
-import classnames from 'classnames';
+import { FC, memo } from 'react';
+import Link from 'next/link';
+import classNames from 'classnames';
 
-import styles from './Footer.module.scss';
-
-import BaseLink from '@/components/BaseLink/BaseLink';
+import css from './Footer.module.scss';
 
 import routes from '@/data/routes';
 
-function Footer() {
+export interface FooterProps {
+  className?: string;
+}
+
+const Footer: FC<FooterProps> = ({ className }) => {
   return (
-    <footer className={classnames(styles.Footer)}>
+    <footer className={classNames('Footer', css.root, className)}>
       <ul>
         {Object.values(routes).map(({ path, title }) => (
           <li key={path}>
-            <BaseLink href={path}>{title}</BaseLink>
+            <Link href={path}>
+              <a>{title}</a>
+            </Link>
           </li>
         ))}
       </ul>
     </footer>
   );
-}
+};
 
 export default memo(Footer);

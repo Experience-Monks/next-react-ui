@@ -20,6 +20,7 @@ const AutoComplete = ({ id, data, className, autoCompleteResult }: Props) => {
   const [model, setModel] = useState<string>('');
 
   const onInputChange = useCallback(
+    // @ts-ignore
     ({ target: { value } }) => {
       if (model) {
         autoCompleteResult(value ? (typingAhead as TypingAheadOption).find(value, model) : null);

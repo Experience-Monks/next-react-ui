@@ -1,9 +1,8 @@
 # Jam3 Next React UI
 
 ![GitHub](https://img.shields.io/github/license/jam3/nyg-nextjs)
-[![Codeship Status for Jam3/nyg-nextjs](https://app.codeship.com/projects/0fcd63a0-29d6-0138-cc17-02df0a7848fa/status?branch=master)](https://app.codeship.com/projects/384142)
 
-> Reusable and customizable React component library based on the NextJS Generator
+> Reusable and customizable React component library based on the [NextJS Boilerplate](https://github.com/Jam3/nextjs-boilerplate)
 > Spiritual successor to https://github.com/Jam3/react-ui
 
 ---
@@ -12,6 +11,7 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Upgrading](#upgrading)
 - [Release](#release)
 - [Contributing](#contributing)
 - [License](#license)
@@ -54,43 +54,51 @@ Every time npm install runs in your project, it will analyze react-ui for any up
 
 ## Usage
 
-#### 1. local Front End server
-
-```properties
-# http://localhost:3000
-$ npm run dev
+```
+npm run dev
 ```
 
-#### 2. storybook
+## Upgrading
 
-```properties
-# http://localhost:9001
-$ npm run storybook
+This repository is using the NextJS Boilerplate as a template. To integrate latest changes from the boilerplate into the component library:
+
+#### 1. Add the remote template
+
+```
+git remote add template https://github.com/Jam3/nextjs-boilerplate
 ```
 
-#### 3. template scripts
+#### 2. Fetch Updates
 
-We are using [seng-generator](https://github.com/mediamonks/seng-generator) to generate templates
-
-```properties
-# cli
-$ npm run generate
-
-# create page(s)
-$ npm run generate page [page-name]
-
-# create api routes
-$ npm run generate api [api-name]
-
-# create component
-$ npm run generate component [component-name]
+```
+git fetch --all
 ```
 
-Default location can be edited here:
+#### 3. Merge
 
-- [page](scripts/templates/page/.senggenerator)
-- [component](scripts/templates/component/.senggenerator)
-- [api](scripts/templates/api/.senggenerator)
+```
+git merge template/main --no-commit --no-ff --allow-unrelated-histories
+```
+
+#### 4. Resolve Conflicts
+
+Majority of conflicts will be resolved by using the incoming (template/main) changes. The following file conflicts should be resolved manually:
+
+- `package.json`
+- `README.md`
+
+Force remaining conflicts to use incoming:
+
+```
+git checkout --theirs .
+```
+
+Commit and create PR into main:
+
+```
+git checkout -b boilerplate-upgrade-oct-26-2022
+git commit -m "feature: Update boilerplate"
+```
 
 ## Release
 

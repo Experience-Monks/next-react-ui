@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
 import 'normalize.css';
 import '@/utils/why-did-you-render';
 
 import '@/styles/global.scss';
+
+import { PageProps } from '@/data/types';
 
 import Layout from '@/components/Layout/Layout';
 
@@ -13,39 +15,28 @@ import setBodyClasses from '@/utils/set-body-classes';
 
 import { store } from '@/redux';
 
-const isBrowser = typeof window !== 'undefined';
-
-if (isBrowser) {
-  require('default-passive-events');
-  require('focus-visible');
-  gsapInit();
-}
+require('default-passive-events');
+require('focus-visible');
+gsapInit();
 
 // This default export is required in a new `pages/_app.js` file.
-function App({ Component, pageProps }: AppProps) {
-  const { isUnsupported, ...componentProps } = pageProps;
-
+const App: FC<AppProps<PageProps>> = (props) => {
   useEffect(() => {
-    if (isBrowser) {
-      if (process.env.NODE_ENV !== 'production' && window.location.href.indexOf('?nostat') === -1) {
-        require('@jam3/stats')();
-      }
+    setBodyClasses();
+  }, []);
 
-      setBodyClasses();
+  /** NOTE: this is where dev tools and helper modules can be placed */
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development' && window.location.href.indexOf('?nostat') === -1) {
+      import(/* webpackChunkName: "jam3-stats" */ '@jam3/stats').then((module) => module.default());
     }
   }, []);
 
-  if (isUnsupported) {
-    return <Component {...componentProps} />;
-  }
-
   return (
     <Provider store={store}>
-      <Layout>
-        <Component {...componentProps} />
-      </Layout>
+      <Layout {...props} />
     </Provider>
   );
-}
+};
 
 export default App;

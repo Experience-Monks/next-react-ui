@@ -87,6 +87,7 @@ function ImageSequence({
   }, [tooltips]);
 
   const setTooltipsPosition = useCallback(
+    // @ts-ignore
     ({ cx, cy, ih, iw, nw, nh }) => {
       tooltips.forEach(({ percentPositionX, percentPositionY }, index) => {
         const tooltipEl = tooltipElsRef.current[index];
@@ -101,6 +102,7 @@ function ImageSequence({
   );
 
   const drawImage = useCallback(
+    // @ts-ignore
     (image) => {
       const ratioDrawOffsetX = percentDrawOffsetX / 100;
       const ratioDrawOffsetY = percentDrawOffsetY / 100;

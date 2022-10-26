@@ -14,7 +14,7 @@ ls:
       .webm: kebab-case
     components:
       .js: PascalCase
-      .tsx: PascalCase | kebab-case | pointcase
+      .tsx: PascalCase
       .stories.js: PascalCase
       .stories.tsx: PascalCase
       .svg: kebab-case
