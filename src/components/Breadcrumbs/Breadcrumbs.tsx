@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicated-branches */
 import { memo, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';

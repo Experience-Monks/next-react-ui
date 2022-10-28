@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import { FocusEventHandler, memo, useMemo } from 'react';
 import classnames from 'classnames';
 import noop from 'no-op';

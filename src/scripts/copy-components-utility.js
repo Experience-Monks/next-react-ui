@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/cognitive-complexity */
+
 const execSync = require('child_process').execSync;
 const fs = require('fs-extra');
 const dirCompare = require('dir-compare');

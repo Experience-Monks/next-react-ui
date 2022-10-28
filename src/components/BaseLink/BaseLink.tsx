@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { ForwardedRef, forwardRef, memo, ReactNode, useMemo } from 'react';
 import Link from 'next/link';
 import classnames from 'classnames';
