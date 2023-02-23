@@ -94,6 +94,8 @@ Majority of conflicts will be resolved by using the incoming (template/main) cha
 
 - `package.json`
 - `README.md`
+- `.ls-lint.yml`
+- `.storybook/webpack.js`
 
 Force remaining conflicts to use incoming:
 

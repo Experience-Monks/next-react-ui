@@ -79,7 +79,7 @@ export const Tabs = ({ className, tabListLabel = '', children }: Props) => {
           cloneElement(child as ReactElement, {
             id: `panel-${index}`,
             role: 'tabpanel',
-            tabIndex: '0',
+            'aria-live': 'polite',
             'aria-labelledby': `tab-${index}`,
             hidden: index !== active
           })

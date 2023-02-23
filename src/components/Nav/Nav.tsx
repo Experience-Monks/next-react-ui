@@ -27,9 +27,11 @@ const Nav: FC<NavProps> = ({ className }) => {
     <nav className={classNames('Nav', css.root, className)}>
       <div className={css.wrapper}>
         <ul className={css.routes}>
-          <a tabIndex={0} aria-label="Skip to content" className={css.skipToContent} href="#start-of-content">
-            Skip to content
-          </a>
+          <li>
+            <a tabIndex={0} aria-label="Skip to content" className={css.skipToContent} href="#start-of-content">
+              Skip to content
+            </a>
+          </li>
           {Object.values(routes).map(({ path, title }) => (
             <li key={path}>
               <Link href={path}>

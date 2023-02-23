@@ -7,16 +7,14 @@ import styles from './VideoControls.module.scss';
 
 import BaseButton from '../../BaseButton/BaseButton';
 import VideoTimeline from '../VideoTimeline/VideoTimeline';
-import CaptionsOffIcon from './assets/captions-off.svg';
-import CaptionsOnIcon from './assets/captions-on.svg';
-import EnterFullscreenIcon from './assets/enter-fullscreen.svg';
-import ExitFullscreenIcon from './assets/exit-fullscreen.svg';
-import MutedIcon from './assets/muted.svg';
-import PauseIcon from './assets/pause.svg';
-import PlayIcon from './assets/play.svg';
-import UnmutedIcon from './assets/unmuted.svg';
-
-type SVG = (props: React.SVGProps<SVGElement>) => React.ReactElement;
+import CaptionsOffIcon from './svgs/captions-off.svg';
+import CaptionsOnIcon from './svgs/captions-on.svg';
+import EnterFullscreenIcon from './svgs/enter-fullscreen.svg';
+import ExitFullscreenIcon from './svgs/exit-fullscreen.svg';
+import MutedIcon from './svgs/muted.svg';
+import PauseIcon from './svgs/pause.svg';
+import PlayIcon from './svgs/play.svg';
+import UnmutedIcon from './svgs/unmuted.svg';
 
 export type Props = {
   className?: string;
@@ -33,21 +31,13 @@ export type Props = {
   isFullScreen?: boolean;
   onFullscreenToggle?: Function;
   navAriaLabel?: string;
-  playIcon?: SVG;
   playLabel?: string;
-  pauseIcon?: SVG;
   pauseLabel?: string;
-  captionsOnIcon?: SVG;
   captionsHideLabel?: string;
-  captionsOffIcon?: SVG;
   captionsShowLabel?: string;
-  mutedIcon?: SVG;
   unmuteLabel?: string;
-  unmutedIcon?: SVG;
   muteLabel?: string;
-  exitFullscreenIcon?: SVG;
   exitFullscreenLabel?: string;
-  enterFullscreenIcon?: SVG;
   enterFullscreenLabel?: string;
   onFocus: Function;
   onBlur: Function;
@@ -68,21 +58,13 @@ const VideoControls = ({
   isFullScreen,
   onFullscreenToggle = noop,
   navAriaLabel = 'Video Controls',
-  playIcon = PlayIcon,
   playLabel = 'Play Video',
-  pauseIcon = PauseIcon,
   pauseLabel = 'Pause Video',
-  captionsOnIcon = CaptionsOnIcon,
   captionsHideLabel = 'Hide Captions',
-  captionsOffIcon = CaptionsOffIcon,
   captionsShowLabel = 'Show Captions',
-  mutedIcon = MutedIcon,
   unmuteLabel = 'Unmute Video',
-  unmutedIcon = UnmutedIcon,
   muteLabel = 'Mute Video',
-  exitFullscreenIcon = ExitFullscreenIcon,
   exitFullscreenLabel = 'Exit Fullscreen Mode',
-  enterFullscreenIcon = EnterFullscreenIcon,
   enterFullscreenLabel = 'Enter Fullscreen Mode',
   onFocus = noop,
   onBlur = noop
@@ -126,8 +108,7 @@ const VideoControls = ({
         title={isPlaying ? pauseLabel : playLabel}
         onClick={onPlayToggle}
       >
-        {/* @ts-ignore */}
-        <img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? pauseLabel : playLabel} />
+        {isPlaying ? <PauseIcon aria-hidden /> : <PlayIcon aria-hidden />}
       </BaseButton>
 
       <VideoTimeline duration={duration} currentTime={Number(currentTime)} onTimeUpdate={onTimeUpdate} />
@@ -141,11 +122,7 @@ const VideoControls = ({
           title={isShowingCaptions ? captionsHideLabel : captionsShowLabel}
           onClick={onCaptionsToggle}
         >
-          <img
-            // @ts-ignore
-            src={isShowingCaptions ? captionsOnIcon : captionsOffIcon}
-            alt={isShowingCaptions ? captionsHideLabel : captionsShowLabel}
-          />
+          {isShowingCaptions ? <CaptionsOnIcon aria-hidden /> : <CaptionsOffIcon aria-hidden />}
         </BaseButton>
       )}
 
@@ -155,8 +132,7 @@ const VideoControls = ({
         title={isMuted ? unmuteLabel : muteLabel}
         onClick={onMuteToggle}
       >
-        {/* @ts-ignore */}
-        <img src={isMuted ? mutedIcon : unmutedIcon} alt={isMuted ? unmuteLabel : muteLabel} />
+        {isMuted ? <MutedIcon aria-hidden /> : <UnmutedIcon aria-hidden />}
       </BaseButton>
 
       {isFullscreenAPISupported && (
@@ -166,11 +142,7 @@ const VideoControls = ({
           title={isFullScreen ? exitFullscreenLabel : enterFullscreenLabel}
           onClick={onFullscreenToggle}
         >
-          <img
-            // @ts-ignore
-            src={isFullScreen ? exitFullscreenIcon : enterFullscreenIcon}
-            alt={isFullScreen ? exitFullscreenLabel : enterFullscreenLabel}
-          />
+          {isFullScreen ? <ExitFullscreenIcon aria-hidden /> : <EnterFullscreenIcon aria-hidden />}
         </BaseButton>
       )}
     </nav>

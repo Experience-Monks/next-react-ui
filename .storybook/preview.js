@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 11.2
+import { RouterContext } from 'next/dist/shared/lib/router-context';
 
 import '../src/styles/global.scss';
 
@@ -11,6 +11,11 @@ gsapInit();
 setBodyClasses();
 
 export const decorators = [
+  (Story) => {
+    require('default-passive-events');
+    require('focus-visible');
+    return Story();
+  },
   (Story) => (
     <Provider store={store}>
       <Story />
@@ -21,7 +26,7 @@ export const decorators = [
 export const parameters = {
   options: {
     storySort: {
-      order: ['intro', ['*', 'SVG'], 'containers', 'components']
+      order: ['intro', ['Readme', 'Copy', 'Typography', 'Colors', 'Effects', 'SVG'], 'pages', 'screens', 'components']
     }
   },
   actions: { argTypesRegex: '^on[A-Z].*' },

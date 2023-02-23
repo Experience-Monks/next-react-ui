@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, memo, ReactNode, useMemo } from 'react';
+import { ForwardedRef, forwardRef, FunctionComponent, memo, ReactNode, Ref, useMemo } from 'react';
 import classnames from 'classnames';
 
 import styles from './BaseButton.module.scss';
@@ -27,9 +27,9 @@ type BaseProps = {
 
 type FComponent =
   | string
-  | React.FunctionComponent<
+  | FunctionComponent<
       BaseProps & {
-        ref: React.Ref<HTMLElement> | null;
+        ref: Ref<HTMLElement> | null;
         role: string | null;
       }
     >;

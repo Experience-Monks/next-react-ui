@@ -1,4 +1,4 @@
-import { memo, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { KeyboardEvent, memo, useEffect, useLayoutEffect, useRef, useState } from 'react';
 // @ts-ignore
 import BackgroundVideo from 'react-background-video-player';
 import classnames from 'classnames';
@@ -9,8 +9,6 @@ import noop from 'no-op';
 import styles from './VideoPlayer.module.scss';
 
 import VideoControls from './VideoControls/VideoControls';
-
-type SVG = (props: React.SVGProps<SVGElement>) => React.ReactElement;
 
 export type Captions = {
   kind: string;
@@ -44,14 +42,6 @@ export type Props = {
   disableBackgroundCover: boolean;
   controlsTimeout: number;
   onEnd: Function;
-  playIcon: SVG;
-  pauseIcon: SVG;
-  mutedIcon: SVG;
-  unmutedIcon: SVG;
-  exitFullscreenIcon: SVG;
-  enterFullscreenIcon: SVG;
-  captionsOnIcon: SVG;
-  captionsOffIcon: SVG;
 };
 
 const VideoPlayer = ({
@@ -77,15 +67,7 @@ const VideoPlayer = ({
   autoPlayDelay = 0,
   disableBackgroundCover = true,
   controlsTimeout = 2.5,
-  onEnd = noop,
-  playIcon,
-  pauseIcon,
-  mutedIcon,
-  unmutedIcon,
-  exitFullscreenIcon,
-  enterFullscreenIcon,
-  captionsOnIcon,
-  captionsOffIcon
+  onEnd = noop
 }: Props) => {
   const container = useRef<HTMLDivElement | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -176,7 +158,7 @@ const VideoPlayer = ({
   // function mute() {
   //   !isMuted && VideoRef.current?.mute();
   // }
-
+  //
   // function unmute() {
   //   isMuted && VideoRef.current?.unmute();
   // }
@@ -299,7 +281,7 @@ const VideoPlayer = ({
     }
   }
 
-  function onKeyPress(e: React.KeyboardEvent) {
+  function onKeyPress(e: KeyboardEvent) {
     if (allowKeyboardControl) {
       const event = e.key;
       if (event === 'Spacebar' || event === ' ') {
@@ -380,14 +362,6 @@ const VideoPlayer = ({
           onFullscreenToggle={toggleFullscreen}
           onCaptionsToggle={toggleCaptions}
           onTimeUpdate={updateTime}
-          playIcon={playIcon}
-          pauseIcon={pauseIcon}
-          mutedIcon={mutedIcon}
-          unmutedIcon={unmutedIcon}
-          exitFullscreenIcon={exitFullscreenIcon}
-          enterFullscreenIcon={enterFullscreenIcon}
-          captionsOnIcon={captionsOnIcon}
-          captionsOffIcon={captionsOffIcon}
           onFocus={onControlsFocus}
           onBlur={onControlsBlur}
         />
