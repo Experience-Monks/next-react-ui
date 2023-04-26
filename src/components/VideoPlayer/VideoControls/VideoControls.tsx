@@ -80,6 +80,7 @@ const VideoControls = ({
   }
 
   const isFullscreenAPISupported = useMemo(() => {
+    if (typeof document === 'undefined') return false;
     return (
       // @ts-ignore
       document.body.requestFullScreen ||
